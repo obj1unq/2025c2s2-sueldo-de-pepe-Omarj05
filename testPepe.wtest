@@ -2,9 +2,88 @@ import pepe.*
 
 describe "Sueldo Pepe" {
 	
-	test "Test 1" {
-		//TODO: Implementame
+	test "pepe recibe sueldo neto de gerente" {
+		pepe.categoria(categoriaGerente)
+
+		assert.equals(categoriaGerente, pepe.categoriaActual())
+		assert.equals(15000, pepe.sueldoNeto())
 	}
 
-	
+	test "pepe recibe sueldo de cadete"	{
+		pepe.categoria(categoriaCadete)
+
+		assert.equals(20000, pepe.sueldoNeto())
+	}
+
+	test "pepe recibe bono resultado por porcentaje y funciona correctamente" {
+		pepe.BonoResultado("porcentaje")
+
+		assert.equals((0.1 / pepe.sueldoNeto()),pepe.bonoResultadoRecibido())
+	}
+
+	test "pepe recibe bono resultado por monto fijo y funciona correctamente" {
+		pepe.BonoResultado("montoFijo")
+
+		assert.equals(800,pepe.bonoResultadoRecibido())
+	}
+
+	test "pepe recibe bono resultado nulo y funciona correctamente" {
+		pepe.BonoResultado("nulo")
+
+		assert.equals(0,pepe.bonoResultadoRecibido())
+	}
+
+	test "pepe recibe bono presentismo normal y funciona correctamente" {
+		pepe.BonoPresentismo("normal")
+
+		pepe.faltas(0)
+		assert.equals(2000, pepe.bonoPresentismoRecibido())
+
+		pepe.faltas(1)
+		assert.equals(1000, pepe.bonoPresentismoRecibido())
+
+		pepe.faltas(3)
+		assert.equals(0, pepe.bonoPresentismoRecibido())
+
+		pepe.faltas(1000)
+		assert.equals(0, pepe.bonoPresentismoRecibido())
+
+		pepe.faltas(-1)
+		assert.equals(0, pepe.bonoPresentismoRecibido())
+	}
+
+	test "pepe recibe bono presentismo ajuste y funciona correctamente" {
+		pepe.BonoPresentismo("ajuste")
+
+		pepe.faltas(0)
+		assert.equals(100, pepe.bonoPresentismoRecibido())
+
+		pepe.faltas(1)
+		assert.equals(0, pepe.bonoPresentismoRecibido())
+
+		pepe.faltas(100)
+		assert.equals(0, pepe.bonoPresentismoRecibido())
+	}
+
+	test "pepe recibe bono presentismo ajuste y funciona correctamente" {
+		pepe.bonoPresentismo("demagogico")
+
+		pepe.sueldoNeto(10000)
+		assert.equals(500, pepe.bonoPresentismoRecibido())
+
+		pepe.sueldoNeto(18000)
+		assert.equals(300, pepe.bonoPresentismoRecibido())
+
+		pepe.sueldoNeto(0)
+		assert.equals(500, pepe.bonoPresentismoRecibido())
+
+		pepe.sueldoNeto(-1)
+		assert.equals(500, pepe.bonoPresentismoRecibido())
+	}
+
+	test "pepe recibe bono presentismo ajuste y funciona correctamente" {
+		pepe.bonoPresentismo("nulo")
+		
+		assert.equals(0, pepe.bonoPresentismoRecibido())
+	}
 }
