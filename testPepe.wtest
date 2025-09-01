@@ -27,7 +27,7 @@ describe "Sueldo Pepe" {
 
 	test "pepe recibe bono resultado por monto fijo y funciona correctamente" {
 		pepe.bonoResultado(bonoResultadoMontoFijo)
-		
+
 		assert.equals(800,pepe.bonoResultadoRecibido())
 	}
 
@@ -38,7 +38,7 @@ describe "Sueldo Pepe" {
 	}
 
 	test "pepe recibe bono presentismo normal y funciona correctamente" {
-		pepe.BonoPresentismo("normal")
+		pepe.bonoPresentismo(bonoPresentismoNormal)
 
 		pepe.faltas(0)
 		assert.equals(2000, pepe.bonoPresentismoRecibido())

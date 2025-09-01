@@ -1,6 +1,7 @@
 object pepe {
     var categoria = categoriaCadete
     var bonoResultado = bonoResultadoNulo
+    var bonoPresentismo = bonoPresentismoNulo
 
     method categoriaActual() { return categoria } //getter
 
@@ -9,9 +10,13 @@ object pepe {
     method sueldoNeto() { return categoria.sueldo() } //getter (pre calculo aqui, y no es necesario var sueldoNeto
 
     method bonoResultadoRecibido() { return bonoResultado.bonoResultadoPara_(self)}
+    method bonoPresentismoRecibido() { return bonoPresentismo.bonoPresentismoPara_(self) }
 
     method bonoResultado() { return bonoResultado } 
     method bonoResultado(_bonoResultado) { bonoResultado = _bonoResultado }
+
+    method bonoPresentismo() { return bonoPresentismo }
+    method bonoPresentismo(_bonoPresentismo) { bonoPresentismo = _bonoPresentismo }
 }
 
 object categoriaCadete {
@@ -36,9 +41,31 @@ object bonoResultadoPorcentaje {
 }
 
 object bonoResultadoMontoFijo {
-
+    method bonoResultadoPara_(empleado) {
+        return 800
+    }
 }
 
 object bonoResultadoNulo {
+    method bonoResultadoPara_(empleado) {
+        return 0
+    }
+}
+
+object bonoPresentismoNormal {
+    method bonoPresentismoPara_(empleado) {
+        return 
+    }
+}
+
+object bonoPresentismoAjuste {
+
+}
+
+object bonoPresentismoDemagogico {
+
+}
+
+object bonoPresentismoNulo {
 
 }
