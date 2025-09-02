@@ -87,15 +87,39 @@ describe "Sueldo Pepe" {
 }
 
 describe "casos de prueba" {
-  	test "caso 1" {	
+  test "caso 1" {
 	pepe.categoria(categoriaCadete)
 	pepe.bonoResultado(bonoResultadoMontoFijo)
 	pepe.bonoPresentismo(bonoPresentismoNormal)
 	pepe.faltas(3)
 
-	assert.equals(20800, pepe.sueldoNeto())
-  	}
+	assert.equals(20800, pepe.sueldo())
+  }
 
-  	test "caso 2" {
+  test "caso 2" {
+	pepe.categoria(categoriaGerente)
+	pepe.bonoResultado(bonoResultadoPorcentaje)
+	pepe.bonoPresentismo(bonoNulo)
+	pepe.faltas(0)
+
+	assert.equals(16500, pepe.sueldo())
+  }
+
+  test "caso 3" {
+	pepe.categoria(categoriaCadete)
+	pepe.bonoResultado(bonoResultadoPorcentaje)
+	pepe.bonoPresentismo(bonoPresentismoNormal)
+	pepe.faltas(0)
+
+	assert.equals(24000, pepe.sueldo())
+  }
+
+  test "caso 4" {
+	pepe.categoria(categoriaCadete)
+	pepe.bonoResultado(bonoResultadoPorcentaje)
+	pepe.bonoPresentismo(bonoPresentismoNormal)
+	pepe.faltas(1)
+
+	assert.equals(23000, pepe.sueldo())
   }
 }

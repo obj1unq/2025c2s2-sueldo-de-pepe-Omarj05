@@ -4,6 +4,10 @@ object pepe {
     var bonoPresentismo = bonoNulo
     var faltas = 0
 
+    method sueldo() {
+        return self.sueldoNeto() + self.bonoResultadoRecibido() + self.bonoPresentismoRecibido()
+    }
+
     method categoriaActual() { return categoria } //getter
 
     method categoria(_categoria) { categoria = _categoria } //setter
