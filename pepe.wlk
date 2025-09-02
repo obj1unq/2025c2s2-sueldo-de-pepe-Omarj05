@@ -100,7 +100,6 @@ object bonoPresentismoDemagogico {
 object sofia {
   var categoria = categoriaCadete
     var bonoResultado = bonoNulo
-    var faltas = 0
 
     method sueldo() {
         return self.sueldoNeto() + self.bonoResultadoRecibido()
@@ -114,11 +113,8 @@ object sofia {
 
     method bonoResultadoRecibido() { return bonoResultado.bonoParaEmpleado(self) }
 
-    method bonoResultado() { return bonoResultado } 
-    method bonoResultado(_bonoResultado) { bonoResultado = _bonoResultado }
-
-    method faltas() { return faltas } //getter
-    method faltas(_faltas) { faltas = _faltas } //setter
+    method bonoResultado() { return bonoResultado } //getter
+    method bonoResultado(_bonoResultado) { bonoResultado = _bonoResultado } //setter
 }
 
 object categoriaVendedor {
@@ -139,4 +135,12 @@ object categoriaVendedor {
     }
 
     method aumentoPorMuchasVentas() { return aumentoPorMuchasVentas } //getter
+}
+
+object categoriaMedioTiempo {
+    var categoriaBase = categoriaCadete
+
+    method categoriaBase(_categoriaBase) { categoriaBase = _categoriaBase } //setter
+
+    method sueldoNeto() { return categoriaBase.sueldo() / 2 } //getter, sueldo a la mitad
 }

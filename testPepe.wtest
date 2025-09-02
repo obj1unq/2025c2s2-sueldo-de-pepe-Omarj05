@@ -125,14 +125,6 @@ describe "casos de prueba para pepe" {
 }
 
 describe "Sueldo Sofia" {
-  	test "los vendedores tienen muchas ventas" {
-		categoriaVendedor.activarAumentoPorMuchasVentas()
-		assert.that(categoriaVendedor.aumentoPorMuchasVentas())
-  	}
-
-	test "los vendedores tienen pocas ventas" {
-		assert.notThat(categoriaVendedor.aumentoPorMuchasVentas())
-  	}
 
 	test "sofia recibe sueldo de vendedora con o sin muchas ventas" {
 		sofia.categoria(categoriaVendedor)
@@ -145,5 +137,89 @@ describe "Sueldo Sofia" {
 		assert.equals(26000, sofia.sueldoNeto())
 	}
 
-	
+	test "sofia recibe sueldo de cadete con o sin bono" {
+		sofia.categoria(categoriaCadete)
+
+		sofia.bonoResultado(bonoResultadoPorcentaje)
+		assert.equals(28600, sofia.sueldo())
+		
+		sofia.bonoResultado(bonoResultadoMontoFijo)
+		assert.equals(26800, sofia.sueldo())
+
+		sofia.bonoResultado(bonoNulo)	
+		assert.equals(26000, sofia.sueldo())
+	}
+
+	test "sofia recibe sueldo de gerente con o sin bono" {
+		sofia.categoria(categoriaGerente)
+
+		sofia.bonoResultado(bonoResultadoPorcentaje)
+		assert.equals(21450, sofia.sueldo())
+		
+		sofia.bonoResultado(bonoResultadoMontoFijo)
+		assert.equals(20300, sofia.sueldo())
+
+		sofia.bonoResultado(bonoNulo)	
+		assert.equals(19500, sofia.sueldo())
+	}
+
+	test "sofia recibe sueldo de vendedor con o sin bono sin muchas ventas" {
+		sofia.categoria(categoriaVendedor)
+
+		sofia.bonoResultado(bonoResultadoPorcentaje)
+		assert.equals(22880, sofia.sueldo())
+		
+		sofia.bonoResultado(bonoResultadoMontoFijo)
+		assert.equals(21600, sofia.sueldo())
+
+		sofia.bonoResultado(bonoNulo)
+		assert.equals(20800, sofia.sueldo())
+	}
+
+	test "sofia recibe sueldo de vendedor con o sin bono con muchas ventas" {
+		categoriaVendedor.activarAumentoPorMuchasVentas()
+		sofia.categoria(categoriaVendedor)
+		
+		sofia.bonoResultado(bonoResultadoPorcentaje)
+		assert.equals(28600, sofia.sueldo())
+		
+		sofia.bonoResultado(bonoResultadoMontoFijo)
+		assert.equals(26800, sofia.sueldo())
+
+		sofia.bonoResultado(bonoNulo)
+		assert.equals(26000, sofia.sueldo())
+	}
 }
+
+describe "sueldo neto de los vendedores" {
+  	test "los vendedores tienen muchas ventas" {
+		categoriaVendedor.activarAumentoPorMuchasVentas()
+		assert.that(categoriaVendedor.aumentoPorMuchasVentas())
+  	}
+
+	test "los vendedores tienen pocas ventas" {
+		assert.notThat(categoriaVendedor.aumentoPorMuchasVentas())
+	}
+}
+
+describe "sueldo neto de los empleados de medio tiempo" {
+	test "los cadetes de medio tiempo reciben su sueldo neto" {
+		categoriaMedioTiempo.categoriaBase(categoriaCadete)
+		assert.that(categoriaMedioTiempo.sueldoNeto() == 10000)
+	}
+
+	test "los gerentes y vendedores de medio tiempo reciben su sueldo neto" {
+		categoriaMedioTiempo.categoriaBase(categoriaGerente)
+		assert.that(categoriaMedioTiempo.sueldoNeto() == 7500)
+	}
+
+	test "los vendedores de medio tiempo reciben su sueldo neto, con o sin aumento por muchas ventas" {
+		categoriaMedioTiempo.categoriaBase(categoriaVendedor)
+		assert.that(categoriaMedioTiempo.sueldoNeto() == 8000)
+
+		categoriaMedioTiempo.categoriaBase(categoriaVendedor)
+		categoriaVendedor.activarAumentoPorMuchasVentas()
+		assert.that(categoriaMedioTiempo.sueldoNeto() == 10000)
+	}
+}
+
