@@ -86,7 +86,7 @@ describe "Sueldo Pepe" {
 	}
 }
 
-describe "casos de prueba" {
+describe "casos de prueba para pepe" {
   test "caso 1" {
 	pepe.categoria(categoriaCadete)
 	pepe.bonoResultado(bonoResultadoMontoFijo)
@@ -122,4 +122,28 @@ describe "casos de prueba" {
 
 	assert.equals(23000, pepe.sueldo())
   }
+}
+
+describe "Sueldo Sofia" {
+  	test "los vendedores tienen muchas ventas" {
+		categoriaVendedor.activarAumentoPorMuchasVentas()
+		assert.that(categoriaVendedor.aumentoPorMuchasVentas())
+  	}
+
+	test "los vendedores tienen pocas ventas" {
+		assert.notThat(categoriaVendedor.aumentoPorMuchasVentas())
+  	}
+
+	test "sofia recibe sueldo de vendedora con o sin muchas ventas" {
+		sofia.categoria(categoriaVendedor)
+
+		assert.equals(categoriaVendedor, sofia.categoriaActual())
+		assert.equals(20800, sofia.sueldoNeto())
+
+		categoriaVendedor.activarAumentoPorMuchasVentas()
+		assert.equals(categoriaVendedor, sofia.categoriaActual())
+		assert.equals(26000, sofia.sueldoNeto())
+	}
+
+	
 }

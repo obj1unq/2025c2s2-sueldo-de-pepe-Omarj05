@@ -95,3 +95,48 @@ object bonoPresentismoDemagogico {
         }
     }
 }
+
+
+object sofia {
+  var categoria = categoriaCadete
+    var bonoResultado = bonoNulo
+    var faltas = 0
+
+    method sueldo() {
+        return self.sueldoNeto() + self.bonoResultadoRecibido()
+    }
+
+    method categoriaActual() { return categoria } //getter
+
+    method categoria(_categoria) { categoria = _categoria } //setter
+
+    method sueldoNeto() { return categoria.sueldo() * 1.3 } //getter aumento del 30%
+
+    method bonoResultadoRecibido() { return bonoResultado.bonoParaEmpleado(self) }
+
+    method bonoResultado() { return bonoResultado } 
+    method bonoResultado(_bonoResultado) { bonoResultado = _bonoResultado }
+
+    method faltas() { return faltas } //getter
+    method faltas(_faltas) { faltas = _faltas } //setter
+}
+
+object categoriaVendedor {
+    var sueldo = 16000
+    var aumentoPorMuchasVentas = false
+
+    method sueldo() { return sueldo } //getter
+    method sueldo(_sueldo) { sueldo = _sueldo } //setter 
+
+    method activarAumentoPorMuchasVentas() {
+        sueldo = sueldo * 1.25          //aumento del 25%
+        aumentoPorMuchasVentas = true
+    }
+
+    method desactivarAumentoPorMuchasVentas() {
+        sueldo = 16000
+        aumentoPorMuchasVentas = false
+    }
+
+    method aumentoPorMuchasVentas() { return aumentoPorMuchasVentas } //getter
+}
