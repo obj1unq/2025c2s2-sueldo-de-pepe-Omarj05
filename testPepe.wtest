@@ -56,8 +56,8 @@ describe "Sueldo Pepe" {
 		assert.equals(0, pepe.bonoPresentismoRecibido())
 	}
 
-	test "pepe recibe bono presentismo ajuste y funciona correctamente" {
-		pepe.BonoPresentismo("ajuste")
+	test "pepe recibe bono presentismo ajuste" {
+		pepe.bonoPresentismo(bonoPresentismoAjuste)
 
 		pepe.faltas(0)
 		assert.equals(100, pepe.bonoPresentismoRecibido())
@@ -69,25 +69,33 @@ describe "Sueldo Pepe" {
 		assert.equals(0, pepe.bonoPresentismoRecibido())
 	}
 
-	test "pepe recibe bono presentismo ajuste y funciona correctamente" {
-		pepe.bonoPresentismo("demagogico")
+	test "pepe recibe bono presentismo demagogico" {
+		pepe.bonoPresentismo(bonoPresentismoDemagogico)
 
-		pepe.sueldoNeto(10000)
+		pepe.categoria(categoriaGerente)
 		assert.equals(500, pepe.bonoPresentismoRecibido())
 
-		pepe.sueldoNeto(18000)
+		pepe.categoria(categoriaCadete)
 		assert.equals(300, pepe.bonoPresentismoRecibido())
-
-		pepe.sueldoNeto(0)
-		assert.equals(500, pepe.bonoPresentismoRecibido())
-
-		pepe.sueldoNeto(-1)
-		assert.equals(500, pepe.bonoPresentismoRecibido())
 	}
 
-	test "pepe recibe bono presentismo ajuste y funciona correctamente" {
-		pepe.bonoPresentismo("nulo")
+	test "pepe recibe bono presentismo nulo" {
+		pepe.bonoPresentismo(bonoNulo)
 		
 		assert.equals(0, pepe.bonoPresentismoRecibido())
 	}
+}
+
+describe "casos de prueba" {
+  	test "caso 1" {	
+	pepe.categoria(categoriaCadete)
+	pepe.bonoResultado(bonoResultadoMontoFijo)
+	pepe.bonoPresentismo(bonoPresentismoNormal)
+	pepe.faltas(3)
+
+	assert.equals(20800, pepe.sueldoNeto())
+  	}
+
+  	test "caso 2" {
+  }
 }

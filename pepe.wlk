@@ -71,9 +71,23 @@ object bonoPresentismoNormal {
 }
 
 object bonoPresentismoAjuste {
-
+    method bonoParaEmpleado(empleado) {
+        if (empleado.faltas() == 0) {
+            return 100
+        }
+        else {
+            return 0
+        }
+    }
 }
 
 object bonoPresentismoDemagogico {
-
+    method bonoParaEmpleado(empleado) {
+        if (empleado.sueldoNeto() < 18000) {
+            return 500
+        }
+        else {
+            return 300
+        }
+    }
 }
