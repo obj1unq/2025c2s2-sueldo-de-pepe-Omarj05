@@ -144,3 +144,39 @@ object categoriaMedioTiempo {
 
     method sueldoNeto() { return categoriaBase.sueldo() / 2 } //getter, sueldo a la mitad
 }
+
+
+object roque {
+    var bonoResultado = bonoNulo
+
+    method sueldo() {
+        return self.sueldoNeto() + self.bonoResultadoRecibido() + 9000
+    }
+
+    method sueldoNeto() { return 28000 } //getter 
+
+    method bonoResultadoRecibido() { return bonoResultado.bonoParaEmpleado(self)}
+
+    method bonoResultado() { return bonoResultado } //getter
+    method bonoResultado(_bonoResultado) { bonoResultado = _bonoResultado } //setter
+}
+
+object ernesto {
+    var compañero = pepe
+    var bonoPresentismo = bonoNulo
+    const faltas = 0
+
+    method sueldo() {
+        return self.sueldoNeto() + self.bonoPresentismoRecibido()
+    }
+
+    method compañeroActual() { return compañero } //getter
+    method compañero(_compañero) { compañero = _compañero } //setter
+
+    method sueldoNeto() { return compañero.sueldoNeto() } //getter
+
+    method bonoPresentismoRecibido() { return bonoPresentismo.bonoParaEmpleado(self) }
+
+    method bonoPresentismo() { return bonoPresentismo } //getter
+    method bonoPresentismo(_bonoPresentismo) { bonoPresentismo = _bonoPresentismo } //setter
+}
