@@ -1,7 +1,8 @@
 object pepe {
     var categoria = categoriaCadete
-    var bonoResultado = bonoResultadoNulo
-    var bonoPresentismo = bonoPresentismoNulo
+    var bonoResultado = bonoNulo
+    var bonoPresentismo = bonoNulo
+    var faltas = 0
 
     method categoriaActual() { return categoria } //getter
 
@@ -9,14 +10,17 @@ object pepe {
 
     method sueldoNeto() { return categoria.sueldo() } //getter (pre calculo aqui, y no es necesario var sueldoNeto
 
-    method bonoResultadoRecibido() { return bonoResultado.bonoResultadoPara_(self)}
-    method bonoPresentismoRecibido() { return bonoPresentismo.bonoPresentismoPara_(self) }
+    method bonoResultadoRecibido() { return bonoResultado.bonoParaEmpleado(self)}
+    method bonoPresentismoRecibido() { return bonoPresentismo.bonoParaEmpleado(self) }
 
     method bonoResultado() { return bonoResultado } 
     method bonoResultado(_bonoResultado) { bonoResultado = _bonoResultado }
 
     method bonoPresentismo() { return bonoPresentismo }
     method bonoPresentismo(_bonoPresentismo) { bonoPresentismo = _bonoPresentismo }
+
+    method faltas() { return faltas } //getter
+    method faltas(_faltas) { faltas = _faltas } //setter
 }
 
 object categoriaCadete {
@@ -35,26 +39,34 @@ object categoriaGerente {
 
 object bonoResultadoPorcentaje {
     
-    method bonoResultadoPara_(empleado) {
+    method bonoParaEmpleado(empleado) {
         return empleado.sueldoNeto() * 0.1
     }
 }
 
 object bonoResultadoMontoFijo {
-    method bonoResultadoPara_(empleado) {
+    method bonoParaEmpleado(empleado) {
         return 800
     }
 }
 
-object bonoResultadoNulo {
-    method bonoResultadoPara_(empleado) {
+object bonoNulo {
+    method bonoParaEmpleado(empleado) {
         return 0
     }
 }
 
 object bonoPresentismoNormal {
-    method bonoPresentismoPara_(empleado) {
-        return 
+    method bonoParaEmpleado(empleado) {
+        if (empleado.faltas() == 0) {
+            return 2000
+        }
+        else if (empleado.faltas() == 1) {
+            return 1000
+        }
+        else {
+            return 0
+        }
     }
 }
 
@@ -63,9 +75,5 @@ object bonoPresentismoAjuste {
 }
 
 object bonoPresentismoDemagogico {
-
-}
-
-object bonoPresentismoNulo {
 
 }

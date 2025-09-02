@@ -15,7 +15,7 @@ describe "Sueldo Pepe" {
 		assert.equals(20000, pepe.sueldoNeto())
 	}
 
-	test "pepe recibe bono resultado por porcentaje y funciona correctamente" {
+	test "pepe recibe bono resultado por porcentaje" {
 		pepe.bonoResultado(bonoResultadoPorcentaje)
 
 		pepe.categoria(categoriaCadete)
@@ -25,19 +25,19 @@ describe "Sueldo Pepe" {
 		assert.equals(1500,pepe.bonoResultadoRecibido())
 	}
 
-	test "pepe recibe bono resultado por monto fijo y funciona correctamente" {
+	test "pepe recibe bono resultado por monto fijo" {
 		pepe.bonoResultado(bonoResultadoMontoFijo)
 
 		assert.equals(800,pepe.bonoResultadoRecibido())
 	}
 
-	test "pepe recibe bono resultado nulo y funciona correctamente" {
-		pepe.bonoResultado(bonoResultadoNulo)
+	test "pepe recibe bono resultado nulo" {
+		pepe.bonoResultado(bonoNulo)
 
 		assert.equals(0,pepe.bonoResultadoRecibido())
 	}
 
-	test "pepe recibe bono presentismo normal y funciona correctamente" {
+	test "pepe recibe bono presentismo normal" {
 		pepe.bonoPresentismo(bonoPresentismoNormal)
 
 		pepe.faltas(0)
