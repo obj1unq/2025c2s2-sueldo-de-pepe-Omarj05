@@ -142,7 +142,7 @@ object categoriaMedioTiempo {
 
     method categoriaBase(_categoriaBase) { categoriaBase = _categoriaBase } //setter
 
-    method sueldoNeto() { return categoriaBase.sueldo() / 2 } //getter, sueldo a la mitad
+    method sueldo() { return categoriaBase.sueldo() / 2 } //getter, sueldo a la mitad
 }
 
 
@@ -179,4 +179,6 @@ object ernesto {
 
     method bonoPresentismo() { return bonoPresentismo } //getter
     method bonoPresentismo(_bonoPresentismo) { bonoPresentismo = _bonoPresentismo } //setter
+
+    method faltas() { return faltas } //getter
 }

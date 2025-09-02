@@ -223,3 +223,27 @@ describe "sueldo neto de los empleados de medio tiempo" {
 	}
 }
 
+describe "caso de prueba general" {
+	test "caso de prueba en pepe" {
+		categoriaMedioTiempo.categoriaBase(categoriaCadete)
+		pepe.categoria(categoriaMedioTiempo)
+		pepe.bonoResultado(bonoResultadoPorcentaje)
+		pepe.bonoPresentismo(bonoPresentismoDemagogico)
+		pepe.faltas(1)
+
+		assert.equals(11500, pepe.sueldo())
+	}
+
+	test "caso de prueba en roque" {
+		roque.bonoResultado(bonoResultadoMontoFijo)
+
+		assert.equals(37800, roque.sueldo())
+	}
+
+	test "caso de prueba en ernesto" {
+		ernesto.compañero(pepe)
+		ernesto.bonoPresentismo(bonoPresentismoAjuste)
+
+		assert.equals(20100, ernesto.sueldo())
+	}
+}
